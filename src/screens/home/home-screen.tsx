@@ -1,25 +1,27 @@
 import React, { useEffect } from 'react'
-import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native'
+import { useSelector } from 'react-redux'
 
 import { useRewards } from '../../entities/rewards'
+import { RootState } from '../../shared/types'
+import { RewardsList } from '../../widgets/rewards-list'
 import styles from './home-screen.styles'
 
 export function HomeScreen() {
-	// temporary:
-	// #Todo: manage it:
-
-	// const { allRewards, collectedRewards } = useSelector(
-	// 	(state: RootState) => state.rewards
-	// )
-	const { getRewardsHandler } = useRewards()
+	const { allRewards } = useSelector((state: RootState) => state.rewards)
+	const { getRewardsHandler, rewardsLoading } = useRewards()
 
 	useEffect(() => {
 		getRewardsHandler()
 	}, [])
 
 	return (
-		<View style={styles.screen}>
-			<Text style={styles.title}>HomeScreen</Text>
-		</View>
+		<SafeAreaView style={styles.screen}>
+			<RewardsList
+				data={allRewards}
+				getDataHandler={getRewardsHandler}
+				loading={rewardsLoading}
+			/>
+		</SafeAreaView>
 	)
 }

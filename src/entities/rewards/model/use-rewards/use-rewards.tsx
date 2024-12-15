@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import Toast from 'react-native-toast-message'
 import { useDispatch } from 'react-redux'
@@ -29,7 +28,7 @@ export function useRewards() {
 			const response = await instance.get('/bounties')
 
 			if (response.status === 200 && response?.data?.length) {
-				return setRewards(response.data)
+				return dispatch(setRewards(response.data))
 			}
 
 			showErrorToast()
