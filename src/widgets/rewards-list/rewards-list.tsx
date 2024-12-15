@@ -7,7 +7,7 @@ import styles from './rewards-list.styles'
 
 interface RewardsListProps {
 	data: RewardType[]
-	getDataHandler: () => Promise<
+	getDataHandler?: () => Promise<
 		{ payload: RewardType[]; type: 'rewards/setRewards' } | undefined
 	>
 	loading?: boolean
@@ -36,7 +36,9 @@ export function RewardsList({
 			data={data}
 			keyExtractor={keyExtractor}
 			refreshControl={
-				<RefreshControl refreshing={loading} onRefresh={getDataHandler} />
+				getDataHandler ? (
+					<RefreshControl refreshing={loading} onRefresh={getDataHandler} />
+				) : undefined
 			}
 			style={styles.list}
 			contentContainerStyle={{ flexGrow: 1 }}
