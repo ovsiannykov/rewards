@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { SafeAreaView } from 'react-native'
+import { View } from 'react-native'
 import { useSelector } from 'react-redux'
 
 import { useRewards } from '../../entities/rewards'
@@ -16,12 +16,13 @@ export function HomeScreen() {
 	}, [])
 
 	return (
-		<SafeAreaView style={styles.screen}>
+		<View style={styles.screen}>
+			{/* #Todo: add empty state: */}
 			<RewardsList
 				data={allRewards}
 				getDataHandler={getRewardsHandler}
 				loading={rewardsLoading}
 			/>
-		</SafeAreaView>
+		</View>
 	)
 }
