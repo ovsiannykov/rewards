@@ -1,11 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 export type RootStackParamsList = {
-	HOME: undefined
+	TABS: undefined
 	REWARD_DETAILS: { id: string }
 }
 
-type HomeProps = NativeStackScreenProps<RootStackParamsList, 'HOME'>
+type HomeProps = NativeStackScreenProps<RootStackParamsList, 'TABS'>
 
 export type HomeNavProp = HomeProps['navigation']
 

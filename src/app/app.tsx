@@ -3,7 +3,7 @@ import React from 'react'
 import Toast from 'react-native-toast-message'
 
 import { Provider } from 'react-redux'
-import { RootStack } from '../navigation/root-navigator'
+import { RootStack } from '../navigation/home-navigator'
 import { store } from './store'
 
 const App = () => {

@@ -21,6 +21,7 @@ export function RewardDetailsScreen() {
 		navigation.setOptions({
 			title: item?.name || '',
 			headerRight: item ? () => <FavoriteButton item={item} /> : undefined,
+			headerBackButtonDisplayMode: 'minimal',
 		})
 	}, [])
 
