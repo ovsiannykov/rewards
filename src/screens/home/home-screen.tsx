@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Text, View } from 'react-native'
 
-import { instance } from '../../shared/core'
+import { useRewards } from '../../entities/rewards'
 import styles from './home-screen.styles'
 
 export function HomeScreen() {
-	const [data, setData] = useState(null)
+	// temporary:
+	// #Todo: manage it:
 
-	const getRewardsHandler = async () => {
-		try {
-			const response = await instance.get('/bounties')
-
-			if (response?.data?.length) {
-				setData(response.data)
-			}
-		} catch (error) {
-			console.log('error', error)
-		}
-	}
+	// const { allRewards, collectedRewards } = useSelector(
+	// 	(state: RootState) => state.rewards
+	// )
+	const { getRewardsHandler } = useRewards()
 
 	useEffect(() => {
 		getRewardsHandler()

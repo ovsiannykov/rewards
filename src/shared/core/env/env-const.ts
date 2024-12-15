@@ -1,8 +1,8 @@
 /*
 
-Usually i save it in ENV 
-(i prefer to use react-native-config for native ENV too), 
-but it needed more time for setup. 
+Usually i save it in ENV
+(i prefer to use react-native-config for native ENV too),
+but it needed more time for setup.
 So i think in test task better don't waste the time and save it here
 
 */
