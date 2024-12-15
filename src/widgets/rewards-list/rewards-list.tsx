@@ -11,12 +11,17 @@ interface RewardsListProps {
 		{ payload: RewardType[]; type: 'rewards/setRewards' } | undefined
 	>
 	loading?: boolean
+	emptyContent?:
+		| React.ComponentType<unknown>
+		| React.ReactElement<unknown, string | React.JSXElementConstructor<unknown>>
+		| null
 }
 
 export function RewardsList({
 	data,
 	getDataHandler,
 	loading = false,
+	emptyContent,
 }: RewardsListProps) {
 	const keyExtractor = useCallback((item: RewardType) => item.id.toString(), [])
 
@@ -34,6 +39,8 @@ export function RewardsList({
 				<RefreshControl refreshing={loading} onRefresh={getDataHandler} />
 			}
 			style={styles.list}
+			contentContainerStyle={{ flexGrow: 1 }}
+			ListEmptyComponent={emptyContent}
 		/>
 	)
 }

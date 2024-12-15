@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { useRewards } from '../../entities/rewards'
 import { RootState } from '../../shared/types'
+import { EmptyContent } from '../../shared/ui'
 import { RewardsList } from '../../widgets/rewards-list'
 import styles from './home-screen.styles'
 
@@ -17,11 +18,18 @@ export function HomeScreen() {
 
 	return (
 		<View style={styles.screen}>
-			{/* #Todo: add empty state: */}
 			<RewardsList
 				data={allRewards}
 				getDataHandler={getRewardsHandler}
 				loading={rewardsLoading}
+				emptyContent={
+					<EmptyContent
+						title="No data"
+						buttonTitle="Reload"
+						onPress={getRewardsHandler}
+						loading={rewardsLoading}
+					/>
+				}
 			/>
 		</View>
 	)

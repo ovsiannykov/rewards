@@ -4,5 +4,6 @@ export default StyleSheet.create({
 	list: {
 		paddingHorizontal: 16,
 		paddingTop: 16,
+		flex: 1,
 	},
 })

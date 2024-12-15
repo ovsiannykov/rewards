@@ -11,8 +11,8 @@ const App = () => {
 		<Provider store={store}>
 			<NavigationContainer>
 				<RootStack />
-				<Toast />
 			</NavigationContainer>
+			<Toast />
 		</Provider>
 	)
 }
