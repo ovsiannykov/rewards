@@ -1,12 +1,9 @@
 import { useCallback } from 'react'
-import {
-	FlatList,
-	ListRenderItem,
-	RefreshControl,
-	Text,
-	View,
-} from 'react-native'
+import { FlatList, ListRenderItem, RefreshControl } from 'react-native'
+
 import { RewardType } from '../../shared/types'
+import { RewardsListItem } from './components'
+import styles from './rewards-list.styles'
 
 interface RewardsListProps {
 	data: RewardType[]
@@ -24,11 +21,7 @@ export function RewardsList({
 	const keyExtractor = useCallback((item: RewardType) => item.id.toString(), [])
 
 	const renderItem: ListRenderItem<RewardType> = useCallback(
-		({ item }) => (
-			<View>
-				<Text>{item.name}</Text>
-			</View>
-		),
+		({ item }) => <RewardsListItem item={item} />,
 		[]
 	)
 
@@ -40,6 +33,7 @@ export function RewardsList({
 			refreshControl={
 				<RefreshControl refreshing={loading} onRefresh={getDataHandler} />
 			}
+			style={styles.list}
 		/>
 	)
 }
