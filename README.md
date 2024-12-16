@@ -1,79 +1,83 @@
+# React Native App Setup with Redux Store for Rewards
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+## Requirements
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### 1. Basic React Native App Setup
 
-## Step 1: Start the Metro Server
+- Use **React Native Community CLI** (not Expo).
+- Set up the project with **TypeScript**.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+### 2. Redux Store for Collected Rewards
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Configure a **Redux Store** to hold collected rewards data.
+- Implement the following:
+  - **Action:** `COLLECT_REWARD`
+    - Accepts a reward payload.
+    - Adds the reward to the list of collected rewards.
 
-```bash
-# using npm
-npm start
+### 3. Rewards List View/Screen
 
-# OR using Yarn
-yarn start
-```
+- Create a screen to display a list of available rewards fetched from the **Rewards API**.
+- Implement the following:
+  - Handle **safe area boundaries**.
+  - Optimize the list to **avoid unnecessary re-renders**.
+  - Fetch new rewards when the **list end is reached**.
+  - Properly handle **loading** and **error states**.
 
-## Step 2: Start your Application
+#### List Item Requirements
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+- Design a UI for each list item with the following elements:
+  - A **"Collect" CTA button** that:
+    - Dispatches the `COLLECT_REWARD` Redux action when clicked.
+    - Is **not displayed** if the reward is already collected.
+  - If the reward is collected:
+    - Change the list item state (e.g., decrease opacity or similar visual cue).
 
-### For Android
+### 4. Collected Rewards View/Screen
 
-```bash
-# using npm
-npm run android
+- Create a screen to display the list of **collected rewards**.
+- Requirements:
+  - Provide a way to navigate to this screen (e.g., add a button on the initial app screen).
+  - Simply show the collected items (list optimization is not required).
 
-# OR using Yarn
-yarn android
-```
+---
 
-### For iOS
+## Rewards API
 
-```bash
-# using npm
-npm run ios
+- Rewards data can be fetched from:  
+  **`https://staging.helloagain.at/api/v1/clients/5189/bounties/`**
+- The API returns a list of loyalty rewards, which typically include:
+  - `name`: Name of the reward.
+  - `needed_points`: Points required for the reward.
+  - `pictures`: An optional list of images.
+- **Note:** Filter out rewards without images for a more predictable data structure.
 
-# OR using Yarn
-yarn ios
-```
+# Note!!!
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Dear reviewer,
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+I think better describe my ideas and issues, that could embarrass you! I use [FSD](https://feature-sliced.design/docs), and i understand that it isn't good idea to use FSD with Redux, beacause in this case needed to have one store. Ussaly i prefer to use zustand and micro-stores in every slice. Also for don't waste the time I didn't add ENV and AsyncStorage
 
-## Step 3: Modifying your App
+## How to start project
 
-Now that you have successfully run the app, let's modify it.
+- Go to your project's root folder and run: `yarn`
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+- If you wiil use IOS run: `yarn run pods`
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- Run `yarn run ios` or `yarn run android` to start your application!
 
-## Congratulations! :tada:
+## Commands
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- `dev` - React Native start with `--reset-cache`
+- `pods` - IOS pods install
+- `android` - run Android
+- `ios` - run IOS
+- `android-release` - run Android in release mode
+- `ios-release` - run IOS in release mode
+- `clean-android` - clean Android builds
+- `android-bundle` - build Android bundle
+- `build-android-release-apk` - build Android .apk file in release mode
+- `build-android-debug-apk` - build Android .apk file in debug mode
+- `build-android-aab` - build Android .apk file for uploading to Play Market
